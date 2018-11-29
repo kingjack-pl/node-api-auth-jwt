@@ -7,6 +7,7 @@ const router = require("./router");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+mongoose.set('useCreateIndex', true);
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:auth/auth", { useNewUrlParser: true });
 
 app.use(morgan("combined"));
