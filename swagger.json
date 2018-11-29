@@ -3,17 +3,17 @@
   "info": {
     "version": "1.0.0",
     "title": "Securing Node.js RESTful API",
-    "description": "Securing Node.js RESTful APIs with JSON Web Tokens and articles model\"",
+    "description": "Securing Node.js RESTful APIs with JSON Web Tokens and articles model",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "localhost:8080",
+  "host": "auth-jwt-node.herokuapp.com",
   "basePath": "/",
 
   "schemes": [
-    "http"
+    "https"
   ],
   "consumes": [
     "application/json"
