@@ -1,0 +1,232 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Securing Node.js RESTful API",
+    "description": "Securing Node.js RESTful APIs with JSON Web Tokens and articles model\"",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/signup": {
+      "post": {
+        "tags": [
+          "SignUp"
+        ],
+        "summary": "Create new user in system",
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/UserAuth"
+            }
+          }
+        }
+      }
+    },
+    "/signin": {
+      "post": {
+        "tags": [
+          "SignIn"
+        ],
+        "summary": "Log in user in system",
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "description": "User that we want to log in",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "User is logged",
+            "schema": {
+              "$ref": "#/definitions/UserAuth"
+            }
+          }
+        }
+      }
+    },
+    "/articles": {
+      "post": {
+        "tags": [
+          "Articles"
+        ],
+        "summary": "Create new article in system",
+        "parameters": [
+          {
+            "name": "article",
+            "in": "body",
+            "description": "Article that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New article is created",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Articles"
+        ],
+        "summary": "Get all articles in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Articles"
+            }
+          }
+        }
+      }
+    },
+    "/articles/{Id}": {
+      "parameters": [
+        {
+          "name": "Id",
+          "in": "path",
+          "required": true,
+          "description": "ID of article that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Article"
+        ],
+        "summary": "Get user with given ID",
+        "responses": {
+          "200": {
+            "description": "Article is found",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete user with given ID",
+        "tags": [
+          "Article"
+        ],
+        "responses": {
+          "200": {
+            "description": "Article is deleted",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update article with give ID",
+        "tags": [
+          "Article"
+        ],
+        "parameters": [
+          {
+            "name": "article",
+            "in": "body",
+            "description": "Article with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Article is updated",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "UserAuth": {
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "Article": {
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        }
+      }
+    },
+    "Articles": {
+      "type": "array",
+      "items":{
+          "type": "object",
+          "$ref": "#/definitions/Article"
+      }
+    }
+  }
+}
